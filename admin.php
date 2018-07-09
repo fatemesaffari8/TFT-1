@@ -85,8 +85,8 @@ session_start();
             <li><a href="exit.php" dir="rtl">خروج</a></li>
             <p class="navbar-text" dir="rtl" style="margin-right: 20px">
                 <?php
-            //    echo
-              //      " نام کاربری شما: ".$_SESSION['username'];
+                echo
+                    " نام کاربری شما: ".$_SESSION['username'];
                 ?>
             </p>
         </ul>
@@ -131,104 +131,14 @@ session_start();
                 یافتن هوشمند تفریح
                 <br>
             </p>
-            <p style="font-size:30px;color: #f2f2f2">
-<?php
-if(isset($_SESSION['calDay']) && $_SESSION['calDay']!='empty')
-{
-    echo
-        " اطلاعات وارد شده: ".' تاریخ:'.$_SESSION['calDay']." روز هفته:".$_SESSION['day']." زمان:".$_SESSION['time']." بودجه:".$_SESSION['budget']
-    ;
-    $_SESSION['calDay']='empty';
-
-    switch ($_SESSION['day']){
-        case "saturday" :
-
-            echo " مراکز پیشنهادی<br />
-          1- پردیس سینمایی کورش <br />
-           آدرس : منطقه 17 شهرداری.بزرگراه آیت الله سعیدی <br />
-           شماره تماس :" .$n = rand (100000, 999999);
-            echo "<br />
-          2- پارک 22 بهمن <br />
-           آدرس : خ قزوین.سرپل امام زاده معصوم <br />
-           شماره تماس :" .$n = rand (100000, 999999);"<br />";
-            break;
-
-        case "sunday" :
-            echo " مراکز پیشنهادی<br />
-          1- مرکز خرید تندیس <br />
-           آدرس : میدان تجریش، ابتدای خیابان جعفری، مرکز خرید تندیس <br />
-           شماره تماس :" .$n = rand (100000, 999999);
-            echo "<br />
-          2- هالی کافه <br />
-           آدرس : خیابان استاد نجات الهی بین سمیه و طالقانی کوچه بیمه <br />
-           شماره تماس :" .$n = rand (100000, 999999);"<br />";;
-            break;
-
-        case "monday" :
-            echo " مراکز پیشنهادی<br />
-          1- پارک ارم قلعه سحر آمیز <br />
-           آدرس : خ دربند.خ اسد الهی <br />
-           شماره تماس :" .$n = rand (100000, 999999);
-            echo "<br />
-          2- مجتمع تجاری کوروش <br />
-           آدرس : بزرگراه شهید ستاری، تقاطع خیابان پیامبر مرکزی، کورش مال <br />
-           شماره تماس :" .$n = rand (100000, 999999);"<br />";
-            break;
-
-        case "tuesday" :
-            echo " مراکز پیشنهادی<br />
-          1- سینما آرش <br />
-           آدرس : چهارراه مولوی – روبروی بیمارستان اشرفی اصفهانی <br />
-           شماره تماس :" .$n = rand (100000, 999999);
-            echo "<br />
-          2- کافه برد گیم <br />
-           آدرس : خیابان انقلاب - خیابان فخررازی - خیابان شهدای ژاندارمری شرقی - پلاک ۶۸ <br />
-           شماره تماس :" .$n = rand (100000, 999999);"<br />";
-            break;
-
-        case "wednesday" :
-            echo " مراکز پیشنهادی<br />
-          1- رستوران مادر <br />
-           آدرس : م بهمن.روبروی فرهنگسرای بهمن <br />
-           شماره تماس :" .$n = rand (100000, 999999);
-            echo "<br />
-          2- دپارتمان سنتر روشا <br />
-           آدرس : خیابان نیاوران، تقاطع عمار و فرمانیه۶۸ <br />
-           شماره تماس :" .$n = rand (100000, 999999);"<br />";
-            break;
-
-        case "thursday" :
-            echo " مراکز پیشنهادی<br />
-          1- كافه بلين <br />
-           آدرس : کریمخان خیابان ایرانشهر پایین تر از پارک هنرمندان کوچه دهقانی <br />
-           شماره تماس :" .$n = rand (100000, 999999);
-            echo "<br />
-          2- سینما آفریقا <br />
-           میدان ولی عصر – خیابان ولی عصر – روبروی بانک سپه <br />
-           شماره تماس :" .$n = rand (100000, 999999);"<br />";
-            break;
-
-        case "friday" :
-            echo " مراکز پیشنهادی<br />
-          1- بوستان ولایت <br />
-           آدرس : منطقه 19 شهرداری.انتهای اتوبان نواب <br />
-           شماره تماس :" .$n = rand (100000, 999999);
-            echo "<br />
-          2- مرکز خرید دنیای نور <br />
-           بزرگراه رسالت نبش خیابان کُرد مجتمع دنیای نور <br />
-           شماره تماس :" .$n = rand (100000, 999999);"<br />";
-            break;
-    }
-}
-?>
+            <p style="color: #f2f2f2; margin-bottom: 50px">
+                <?php
+                if($_SESSION['day']!='empty')
+                    echo  $_SESSION['day'];
+                $_SESSION['day']='empty';
+                ?>
             </p>
-
                 <form action="action-admin-findByDay.php" method="post">
-                    <p style="color: #f2f2f2">
-تاریخ مورد نظر خود را انتخاب کنید:
-                    <br>
-                    </p>
-                    <input type="date" name="calDay" class="center-block" style="width:70%">
                     <p style="color: #f2f2f2">
                         روز مورد نظر خود را انتخاب کنید:
                         <br>
@@ -257,9 +167,16 @@ if(isset($_SESSION['calDay']) && $_SESSION['calDay']!='empty')
                     <br>
                     <button type="submit" class="btn mybutton center-block">تایید</button>
                 </form>
-            <a href="interest.php" target="_blank" style="font-size:30px;color: #f2f2f2">
-             تنظیم علایق
+            <a href="action-admin-findByInterest.php" target="_blank" style="font-size:30px;color: #f2f2f2">
+             یافتن تفریح مناسب شما با استفاده از علایق
             </a>
+            <p style="color: #f2f2f2; margin-bottom: 50px">
+                <?php
+                if($_SESSION['interest']!='empty')
+                    echo  $_SESSION['interest'];
+                $_SESSION['interest']='empty';
+                ?>
+            </p>
         </div>
     </div>
 </div>
