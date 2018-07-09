@@ -42,29 +42,22 @@
             font-family: "salamat";
             font-size: 40px;
         }
-
-        p {
-            font-family:"salamat";
-            text-align: center;
-            font-size: 30px;
-        }
-
         .button {
             display: inline-block;
             background-color: #ffa31a;
             border-radius: 4px;
             border: none;
             color: black;
-            padding: 30px 64px;
             text-align: center;
             text-decoration: none;
-            display: inline-block;
             font-family: "salamat";
-            font-size: 20px;
+            font-size: 25px;
             margin: 3px;
             cursor: pointer;
             transition: all 0.5s;
-            width: 16%;
+            height: 20%;
+            width: 90%;
+
         }
 
         .button:hover {
@@ -99,25 +92,59 @@
             <li><a href="exit.php" dir="rtl">خروج</a></li>
             <p class="navbar-text" dir="rtl" style="margin-right: 20px">
                 <?php
-            //    echo
-              //      " نام کاربری شما: ".$_SESSION['username'];
+                session_start();
+                echo
+                   " نام کاربری شما: ".$_SESSION['username'];
                 ?>
             </p>
         </ul>
     </div>
 </nav>
 <h1 style="margin-top: 75px">:مکان های مورد علاقه خود را انتخاب کنید </h1>
-<p>.با وارد کردن مکان های مورد علاقه خود از اضافه شدن مکان های جدید،تخفیف ها و... مطلع شوید</p>
+<p style="font-family: salamat;text-align: center;font-size: 30px">.با وارد کردن مکان های مورد علاقه خود از اضافه شدن مکان های جدید،تخفیف ها و... مطلع شوید</p>
 
 <div class="bg"></div>
 <div class="row center-block" style="margin-top: 25px">
-    <button class="button">رستوران و کافی شاپ</button>
-    <button class="button button2">شهربازی</button>
-    <button class="button button3">مرکز خرید</button>
-    <button class="button button4">مجموعه ورزشی</button>
-    <button class="button button5">پارک و فضای آزاد</button>
-    <button class="button button6">سینما،کنسرت و تئاتر</button>
+    <?php
+    if(isset($_SESSION['addInterest']) && $_SESSION['addInterest'] == 'success')
+    {
+        echo
+        '
+<div dir="rtl" style="font-family:salamat ;color:brown; font-size: 25px;width: 95%" class="center-block">
+    <div class="panel panel-success" >
+    <div class="panel-heading">پیام</div >
+    <div class="panel-body">با موفقیت انجام شد و اطلاعات ثبت شد</div>
+    </div>
 </div>
+             ';
+        $_SESSION['addInterest']='empty';
+    }
+    ?>
+    <form action="action-addInterest.php" method="post" class="col-md-2">
+        <input type="hidden" name="category"  value="restaurant">
+        <button type="submit" class="button">رستوران و کافی شاپ</button>
+    </form>
+    <form action="action-addInterest.php" method="post" class="col-md-2">
+        <input type="hidden" name="category"  value="farhangi">
+        <button type="submit" class="button button2">سینما،کنسرت و تئاتر</button>
+    </form>
+    <form action="action-addInterest.php" method="post" class="col-md-2">
+        <input type="hidden" name="category"  value="fan-fair">
+        <button type="submit" class="button button3">شهربازی</button>
+    </form>
+    <form action="action-addInterest.php" method="post" class="col-md-2">
+        <input type="hidden" name="category"  value="shop-center">
+        <button type="submit" class="button button4">مرکز خرید</button>
+    </form>
+    <form action="action-addInterest.php" method="post" class="col-md-2">
+        <input type="hidden" name="category"  value="gym">
+        <button type="submit" class="button button5">مجموعه ورزشی</button>
+    </form>
+    <form action="action-addInterest.php" method="post" class="col-md-2">
+        <input type="hidden" name="category"  value="park">
+        <button type="submit" class="button button6">پارک و فضای آزاد</button>
+    </form>
 
+</div>
 </body>
 </html>

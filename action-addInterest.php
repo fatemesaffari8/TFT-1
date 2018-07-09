@@ -13,19 +13,14 @@ if(isset($_POST['category']) && !empty($_POST['category']))
 
 if($counter==1)
 {
-    $category=$_POST['category'];
-	$result = mysql_query("select interest from Users where id ='".$_SESSION['id']."'");
-	$row = mysql_fetch_array($result);
-    $id = $row['id'];
+    $category = $_POST['category'];
+    $userName = $_SESSION['username'];
 
-    $query =  mysql_query("UPDATE Users SET interest ='".$category."' WHERE id = '".$id."'");
-	if(mysqli_query($connection, $query)){
-    echo "Records were updated successfully.";
-} else {
-    echo "ERROR: Could not able to execute $query. " . mysqli_error($connection);
-}
-   
+    $result = $connection->prepare("UPDATE `users` SET `interest`=? WHERE  `user name`=?");
+    $result->bind_param("ss", $category, $userName);
+    $result->execute();
+    $result = $result->get_result();
     $_SESSION['addInterest'] = 'success';
 }
-header('Location: addInterest.php');
+header('Location: interest.php');
 ?>
