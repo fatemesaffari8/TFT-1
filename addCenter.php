@@ -142,6 +142,10 @@
                 <input type="radio" name="category" value="park" style="margin-right: 30px">پارک و فضای آزاد
                 <input type="radio" name="category" value="other" style="margin-right: 30px"> سایر
                 <br>
+                آیا مایل به تبلیغ مرکز خود هستید؟
+                <input type="radio" name="ad" value="yes" style="margin-right: 30px">بله
+                <input type="radio" name="ad" value="no" style="margin-right: 30px">خیر
+                <br>
 هزینه ی بلیط (در صورت دارا بودن به ریال)
                 <br>
                 <input type="number" placeholder="هزینه ی بلیط را وارد کنید" name="ticket" class="center-block" style="width:70%">

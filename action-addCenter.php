@@ -18,6 +18,8 @@ if(isset($_POST['email']) && !empty($_POST['email']))
     $counter++;
 if(isset($_POST['category']) && !empty($_POST['category']))
     $counter++;
+if(isset($_POST['ad']) && !empty($_POST['ad']))
+    $counter++;
 if(isset($_POST['ticket']) && !empty($_POST['ticket']))
     $counter++;
 if(isset($_POST['account-number']) && !empty($_POST['account-number']))
@@ -67,6 +69,7 @@ if($counter!=0)
     $phoneNumber=$_POST['phone-number'];
     $email=$_POST['email'];
     $category=$_POST['category'];
+    $ad=$_POST['ad'];
     $ticket=$_POST['ticket'];
     $accountNumber=$_POST['account-number'];
     $description=$_POST['description'];
@@ -92,10 +95,10 @@ if($counter!=0)
     $friFrom=$_POST['fri-from'];
     $friTo=$_POST['fri-to'];
 
-    $result = $connection->prepare("INSERT INTO `centers`(`center-name`,`center-address`,`phone-number`,`email`,`category`,`ticket`,`account-number`,`description`
+    $result = $connection->prepare("INSERT INTO `centers`(`center-name`,`center-address`,`phone-number`,`email`,`category`,`ad`,`ticket`,`account-number`,`description`
             ,`sat-from`,`sat-to`,`sun-from`,`sun-to`,`mon-from`,`mon-to`,`tue-from`,`tue-to`,`wed-from`,`wed-to`,`thu-from`,`thu-to`
-            ,`fri-from`,`fri-to`) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
-    $result->bind_param("ssdssddsdddddddddddddd", $centerName, $centerAddress, $phoneNumber, $email, $category, $ticket, $accountNumber, $description, $satFrom,
+            ,`fri-from`,`fri-to`) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+    $result->bind_param("ssdsssddsdddddddddddddd", $centerName, $centerAddress, $phoneNumber, $email, $category, $ad, $ticket, $accountNumber, $description, $satFrom,
         $satTo, $sunFrom, $sunTo, $monFrom, $monTo, $tueFrom, $tueTo, $wedFrom, $wedTo, $thuFrom, $thuTo, $friFrom, $friTo);
     $result->execute();
     $result = $result->get_result();
