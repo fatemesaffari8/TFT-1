@@ -74,14 +74,7 @@ session_start();
             <a class="navbar-brand" href="index.php" style="font-family: ad">Tehran Fun Tour</a>
         </div>
         <ul class="nav navbar-nav navbar-right" style="font-family: aa;font-size: 30px;height: 45px">
-            <li><a href="interest.php"><span class="glyphicon"></span>علایق</a></li>
-            <li class="dropdown" dir="rtl">
-            <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">تنظیمات<span class="caret"></span></a>
-                <ul class="dropdown-menu" style="font-size: large">
-                    <li><a href="changeEmail.php">تغییر ایمیل</a></li>
-                    <li><a href="changePassword.php">تغییر رمز عبور</a></li>
-                </ul>
-            </li>
+            <li><a href="profile.php"><span class="glyphicon"></span>پروفایل کاربر</a></li>
             <li><a href="exit.php" dir="rtl">خروج</a></li>
             <p class="navbar-text" dir="rtl" style="margin-right: 20px">
                 <?php

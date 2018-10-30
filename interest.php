@@ -81,7 +81,7 @@
             <a class="navbar-brand" href="index.php" style="font-family: ad">Tehran Fun Tour</a>
         </div>
         <ul class="nav navbar-nav navbar-right" style="font-family: aa;font-size: 30px;height: 45px">
-            <li><a href="admin.php"><span class="glyphicon"></span>یافتن تفریح</a></li>
+            <li><a href="profile.php"><span class="glyphicon"></span>پروفایل</a></li>
             <li class="dropdown" dir="rtl">
             <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">تنظیمات<span class="caret"></span></a>
                 <ul class="dropdown-menu" style="font-size: large">
