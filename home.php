@@ -1,4 +1,7 @@
-﻿<html>
+﻿<?php
+session_start();
+?>
+<html>
 <head>
     <meta charset="utf-8">
     <title>Tehran Fun Tour</title>
@@ -149,6 +152,11 @@
 <div class="row">
 <div class="col-md-6" dir="rtl">
     <div class="card container-fluid">
+        <p style="font-family:b; font-size: 40px">
+        ورود کاربران
+        <br>
+        </p>
+
         <?php
         if(isset($_SESSION['islogin']) && $_SESSION['islogin']=='false')
         {
@@ -161,26 +169,23 @@
     </div>
 </div>
                 ';
-            $_SESSION['islogin']='empty';
+            $_SESSION['islogin'] = 'empty';
         }
-        if(isset($_SESSION['islogin']) && $_SESSION['islogin']=='logout')
+        if(isset($_SESSION['username']) && $_SESSION['username']=='logout')
         {
             echo
             '
-<div dir="rtl" style="font-family:aa ;color:firebrick; font-size: 25px">
+<div dir="rtl" style="font-family:aa ;color:green; font-size: 25px">
     <div class="panel panel-success" >
     <div class="panel-heading">پیام</div >
     <div class="panel-body">با موفقیت خارج شدید</div>
     </div>
 </div>
              ';
-            $_SESSION['islogin'] = 'empty';
+            $_SESSION['username'] = 'empty';
         }
         ?>
-        <p style="font-family:b; font-size: 40px">
-        ورود کاربران
-        <br>
-        </p>
+
         <center>
         <form action="action-login.php" method="post">
             <br>
@@ -199,12 +204,16 @@
 </div>
     <div class="col-md-6" dir="rtl">
         <div class="card container-fluid">
+        <p style="font-family:b; font-size:40px">
+            ثبت نام کاربران
+            <br>
+        </p>
             <?php
             if(isset($_SESSION['signup']) && $_SESSION['signup']=='success')
             {
                 echo
                 '
-<div dir="rtl" style="font-family:aa ;color:firebrick; font-size: 25px">
+<div dir="rtl" style="font-family:aa ;color:green; font-size: 25px">
     <div class="panel panel-success" >
     <div class="panel-heading">پیام</div >
     <div class="panel-body">ثبت نام با موفقیت انجام شد و اطلاعات ثبت شد</div>
@@ -213,13 +222,51 @@
              ';
                 $_SESSION['signup']='empty';
             }
+            if(isset($_SESSION['signup']) && $_SESSION['signup']=='similarUserName')
+            {
+                echo
+                '
+<div dir="rtl" style="font-family:aa ;color:firebrick; font-size: 25px">
+    <div class="panel panel-danger" >
+    <div class="panel-heading">پیام</div >
+    <div class="panel-body">این نام کاربری قبلا در سیستم ثبت شده. لطفا نام کاربری دیگری انتخاب کنید.</div>
+    </div>
+</div>
+             ';
+                $_SESSION['signup']='empty';
+            }
+
+            if(isset($_SESSION['photo']) && $_SESSION['photo']=='notImage')
+            {
+                echo
+                '
+<div dir="rtl" style="font-family:aa ;color:firebrick; font-size: 25px;margin-left: 40px">
+<br>
+    <div class="panel panel-danger" >
+    <div class="panel-heading">پیام</div >
+    <div class="panel-body">فایل انتخاب شده باید عکس باشد</div>
+    </div>
+</div>
+                ';
+                $_SESSION['photo']='empty';
+            }
+            if(isset($_SESSION['photo']) && $_SESSION['photo']=='notAllowedَ')
+            {
+                echo
+                '
+<div dir="rtl" style="font-family:aa ;color:firebrick; font-size: 25px;margin-left: 40px">
+<br>
+    <div class="panel panel-danger" >
+    <div class="panel-heading">پیام</div >
+    <div class="panel-body">نوع فایل باید gif png jpeg jpg باشد</div>
+    </div>
+</div>
+                ';
+                $_SESSION['photo']='empty';
+            }
             ?>
-        <p style="font-family:b; font-size:40px">
-            ثبت نام کاربران
-            <br>
-        </p>
             <center>
-        <form action="" method="post">
+        <form action="action-signup.php" method="post" enctype="multipart/form-data">
             <br>
             <input type="text" placeholder="نام خود را وارد کنید" name="name" style="width:70%">
             <br>
@@ -232,7 +279,10 @@
             <input type="number" placeholder="شماره تلفن خود را وارد کنید" name="phone-number" style="width:70%">
             <br>
             <input type="email" placeholder="ایمیل خود را وارد کنید" name="email" style="width:70%">
-            <br><br>
+            <br>
+            عکس پروفایل:
+            <input type="file" name="photo" style="width:70%">
+            <br>
             <button type="submit" class="btn mybutton center-block">تایید</button>
         </form>
             </center>
