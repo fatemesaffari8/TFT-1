@@ -1,4 +1,7 @@
-﻿<html>
+﻿<?php
+session_start();
+?>
+<html>
 <head>
     <meta charset="utf-8">
     <title>Tehran Fun Tour</title>
@@ -149,6 +152,11 @@
 <div class="row">
 <div class="col-md-6" dir="rtl">
     <div class="card container-fluid">
+        <p style="font-family:b; font-size: 40px">
+        ورود کاربران
+        <br>
+        </p>
+
         <?php
         if(isset($_SESSION['islogin']) && $_SESSION['islogin']=='false')
         {
@@ -161,7 +169,7 @@
     </div>
 </div>
                 ';
-            $_SESSION['islogin']='empty';
+            $_SESSION['islogin'] = 'empty';
         }
         if(isset($_SESSION['islogin']) && $_SESSION['islogin']=='logout')
         {
@@ -177,10 +185,7 @@
             $_SESSION['islogin'] = 'empty';
         }
         ?>
-        <p style="font-family:b; font-size: 40px">
-        ورود کاربران
-        <br>
-        </p>
+
         <center>
         <form action="action-login.php" method="post">
             <br>
