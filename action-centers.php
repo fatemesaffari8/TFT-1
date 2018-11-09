@@ -6,28 +6,27 @@ if(!$connection)
 mysqli_set_charset($connection,'utf8');
 
 session_start();
-$_SESSION['category']='empty';
 $_SESSION['centerInf']='empty';
 $counter=0;
-if(isset($_POST['category']) && !empty($_POST['category']))
+if(isset($_POST['id']) && !empty($_POST['id']))
     $counter++;
-
+$string = "";
 if($counter==1)
 {
-    $category=$_POST['category'];
+    $id=$_POST['id'];
     $string = "";
 
-    $result = $connection->prepare("SELECT `id`,`center-name`,`center-address`,`phone-number`,`sat-from`,`sat-to`,
+    $result = $connection->prepare("SELECT `center-name`,`center-address`,`phone-number`,`sat-from`,`sat-to`,
           `sun-from`,`sun-to`,`mon-from`,`mon-to`,`tue-from`,`tue-to`,`wed-from`,`wed-to`,`thu-from`,`thu-to`,`fri-from`,`fri-to`
-          FROM `centers` WHERE `category`=?");
-    $result->bind_param("s", $category);
+          FROM `centers` WHERE `id`=?");
+    $result->bind_param("d", $id);
     $result->execute();
-    $result->bind_result($id, $centerName, $centerAddress, $phoneNumber, $satFrom, $satTo, $sunFrom, $sunTo,
+    $result->bind_result($centerName, $centerAddress, $phoneNumber, $satFrom, $satTo, $sunFrom, $sunTo,
         $monFrom, $monTo, $tueFrom, $tueTo, $wedFrom, $wedTo, $thuFrom, $thuTo, $friFrom, $friTo);
     while ($result->fetch())
     {
-        $string= $string
-            ."نام مرکز: ".$centerName ."<br>"
+        $string= $string .
+            "نام مرکز: ".$centerName ."<br>"
             ."آدرس: ".$centerAddress ."<br>"
             ."شماره تماس: ".$phoneNumber ."<br>"."ساعات کاری: "."<br>";
         if($satFrom!=0 and $satTo!=0)
@@ -44,13 +43,9 @@ if($counter==1)
             $string= $string ."پنج شنبه ها: از ساعت ". $thuFrom ." تا ساعت ". $thuTo."<br>";
         if($friFrom!=0 and $friTo!=0)
             $string= $string ."جمعه ها: از ساعت ". $friFrom ." تا ساعت ". $friTo."<br>";
-        $string= $string ." 
-        <form  action=\"action-centers.php\" method=\"post\">
-            <input  type=\"hidden\" name=\"id\" value=".$id.">
-            <button type=\"submit\" class=\" btn mybutton center-block\">اطلاعات بیشتر</button>
-        </form>";
+        $string= $string . "<br>";
     }
-    $_SESSION['category'] = $string;
+    $_SESSION['centerInf'] = $string;
 }
-header('Location: admin.php');
+header('Location: center.php');
 ?>

@@ -76,8 +76,8 @@ session_start();
             <li><a href="exit.php" dir="rtl">خروج</a></li>
             <p class="navbar-text" dir="rtl" style="margin-right: 20px">
                 <?php
-            //    echo
-              //      " نام کاربری شما: ".$_SESSION['username'];
+                echo
+                    " نام کاربری شما: ".$_SESSION['username'];
                 ?>
             </p>
         </ul>
