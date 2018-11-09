@@ -1,4 +1,7 @@
-﻿<html>
+﻿<?php
+session_start();
+?>
+<html>
 <head>
     <meta charset="utf-8">
     <title>Tehran Fun Tour</title>
@@ -6,6 +9,67 @@
     <link rel="stylesheet" href="css/bootstrap.css">
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <script src="js/bootstrap.js"></script>
+
+    <script type="text/javascript">
+        function validateForm()
+        {
+
+            var a=document.forms["reg"]["name"].value;
+            var c=document.forms["reg"]["email"].value;
+            var d=document.forms["reg"]["phone-number"].value;
+            var e=document.forms["reg"]["user-name"].value;
+            var f=document.forms["reg"]["password"].value;
+
+
+            if ((a==null || a=="") && (c==null || c=="") &&
+                (d==null || d=="") && (e==null || e=="") && (f==null || f==""))
+            {
+                alert("All Field must be filled out");
+                return false;
+            }
+            if (a==null || a=="")
+            {
+                alert("Your full name must be filled out");
+                return false;
+            }
+
+            if (c==null || c=="")
+            {
+                alert("Email name must be filled out");
+                return false;
+            }
+            if (d==null || d=="")
+            {
+                alert("Contact must be filled out");
+                return false;
+            }
+            if (e==null || e=="")
+            {
+                alert("username must be filled out");
+                return false;
+            }
+            if (f==null || f=="")
+            {
+                alert("password must be filled out");
+                return false;
+            }
+
+            var RE =/^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/im ;
+            if(!RE.test(d))
+            {
+                alert("You have entered an invalid phone number");
+                return false;
+            }
+
+            var atpos = c.indexOf("@");
+            var dotpos = c.lastIndexOf(".");
+            if (atpos<1 || dotpos<atpos+2 || dotpos+2>=x.length) {
+                alert(d.value);
+                return false;
+            }
+        }
+    </script>
+
     <style>
         @font-face {
             font-family: "aa";
@@ -78,6 +142,21 @@
                 ورود مدیران مراکز
                 <br>
             </p>
+            <?php
+            if(isset($_SESSION['islogin']) && $_SESSION['islogin']=='false')
+            {
+                echo
+                '
+<div dir="rtl" style="font-family:aa ;color:firebrick; font-size: 25px">
+    <div class="panel panel-danger" >
+    <div class="panel-heading">پیام</div >
+    <div class="panel-body">نام کاربری یا رمز عبور اشتباه است</div>
+    </div>
+</div>
+                ';
+                $_SESSION['islogin'] = 'empty';
+            }
+            ?>
             <center>
                 <form action="action-login-modiran.php" method="post">
                     <input type="text" placeholder="نام کاربری" name="user-name" style="width:70%">
@@ -100,7 +179,35 @@
             ثبت نام مدیران مراکز
             <br>
         </p>
-            <form action="" method="post">
+        <?php
+        if(isset($_SESSION['signup']) && $_SESSION['signup']=='success')
+        {
+            echo
+            '
+<div dir="rtl" style="font-family:aa ;color:green; font-size: 25px">
+    <div class="panel panel-success" >
+    <div class="panel-heading">پیام</div >
+    <div class="panel-body">ثبت نام با موفقیت انجام شد و اطلاعات ثبت شد</div>
+    </div>
+</div>
+             ';
+            $_SESSION['signup']='empty';
+        }
+        if(isset($_SESSION['signup']) && $_SESSION['signup']=='similarUserName')
+        {
+        echo
+        '
+        <div dir="rtl" style="font-family:aa ;color:firebrick; font-size: 25px">
+            <div class="panel panel-danger" >
+                <div class="panel-heading">پیام</div >
+                <div class="panel-body">این نام کاربری قبلا در سیستم ثبت شده. لطفا نام کاربری دیگری انتخاب کنید.</div>
+            </div>
+        </div>
+        ';
+        $_SESSION['signup']='empty';
+        }
+        ?>
+            <form action="action-signupModiran.php" onsubmit="return validateForm()" method="post">
                 نام و نام خانوادگی:
                 <br>
                 <input type="text" placeholder="نام و نام خانوادگی خود را وارد کنید" name="name" class="center-block" style="width:70%">
